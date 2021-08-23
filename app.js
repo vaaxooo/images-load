@@ -6,15 +6,8 @@ const {defaultLogger, apiLogger} = require('./class/logger');
 
 (async () => {
     let generator = load();
-    let paramsMap = new Set();
     let uploads = [];
     for await(let value of generator) {
-        if(!paramsMap.has(value.id)) {
-            paramsMap.add(value);
-        } else {
-            continue;
-        }
-
         try {
             uploads.push(uploadImage({
                 image: value.image,
